@@ -168,7 +168,7 @@ namespace PredicateGenerator.Generator
         private static Expression BuildStringContainsCondition(Expression parameterExpression, PredicateExpressionType comparer, Expression valueExpression)
         {
             var contains = valueExpression.Type.GetMethod(Enum.GetName(typeof(PredicateExpressionType), comparer), new [] {typeof(string)});
-            return Expression.Call(parameterExpression, contains, valueExpression);
+            return Expression.Call(parameterExpression, contains, valueExpression, Expression.Constant(StringComparison.CurrentCultureIgnoreCase));
         }
         private static Expression MakeLambda(Expression parameter, Expression predicate)
         {
